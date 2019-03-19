@@ -48,32 +48,40 @@ class User
 			$areas[$i] = $row['ter_name'];
 			$i++;
 		}
-		// echo '<pre>';
-		// print_r($areas);
-		// echo '</pre>';die;
 		return $areas;
 
 	}
+	public static function checkEmailExists($email)
+	    {
+	        // Соединение с БД
+	        $db = Db::getConnection();
 
+	        // Текст запроса к БД
+	        $sql = 'SELECT COUNT(*) FROM user WHERE email = :email';
+
+	        // Получение результатов. Используется подготовленный запрос
+	        $result = $db->prepare($sql);
+	        $result->bindParam(':email', $email, PDO::PARAM_STR);
+	        $result->execute();
+
+	        if ($result->fetchColumn())
+	            return true;
+	        return false;
+	    }
 	public static function register($name, $email)
 	{
 		$id = intval($id);
 
 		if ($id) {
-/*			$host = 'localhost';
-			$dbname = 'php_base';
-			$user = 'root';
-			$password = '';
-			$db = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);*/
+
 			$db = Db::getConnection();
-			$result = $db->query('SELECT * FROM news WHERE id=' . $id);
+			$db->query('SELECT * FROM users WHERE email ='.$email);
+			$stmt = $db->query('SELECT * FROM table');
+			
 
-			/*$result->setFetchMode(PDO::FETCH_NUM);*/
-			$result->setFetchMode(PDO::FETCH_ASSOC);
+			var_dump($result->fetch());die;
 
-			$newsItem = $result->fetch();
-
-			return $newsItem;
+			return true;
 		}
 
 	}

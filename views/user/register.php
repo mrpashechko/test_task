@@ -12,7 +12,7 @@
 <body>
     <div class="wrapper">
         <div class="form">
-            <form action="#" method="post">
+            <form action="/register/" method="post">
                 <div class="login">
                     <div class="input"><input required id="name" type="text" name="name" placeholder="ФИО" value=""/></div>
                     <br><br>
@@ -20,7 +20,7 @@
                     <br><br>
 
                     <div class="input">
-                        <select id="regions" required>
+                        <select id="regions" name="region" required>
                             <option value="regions">Регион</option>
                             <?php foreach($regions as $region): ?>
                                 <option value="<?php echo $region; ?>"><?php echo $region; ?></option>
@@ -36,7 +36,7 @@
                     <br/>
                 </div>
                 <div class="submit">
-                    <div class="input"><input id="submit" type="submit" name="submit" value="Log in"></div>
+                    <div class="input"><input id="submit" type="submit" name="submit" value="Go!"></div>
                 </div>
             </form>
         </div>
